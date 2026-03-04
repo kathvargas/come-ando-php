@@ -1,31 +1,28 @@
 <?php
 
-require __DIR__ . "/source/Models/Produto.php";
+require __DIR__ . "/source/Models/Order.php";
 
-use Source\Models\Product;
+use Source\Models\Order;
 
-echo "<h1>Teste da Classe Produto</h1>";
+echo "<h1>Teste da Classe Order</h1>";
 echo "<hr>";
 //instancia o objeto
-$product= new Product();
-var_dump($product);
+$order= new Order();
+var_dump($order);
 //atribuindo valores ao objeto
-$product1= new Product(1,"banana",5.00);
-$product1->show();
+$order1= new Order(1, "kath",150.00);
+$order1->show();
 
-$product2= new Product(2,"morango",8.00);
-$product2->show();
+$order2= new Order(2,"pedro",200.00);
+$order2->show();
 
-$product3=new Product();
+$order3=new Order();
 //atribuindo valores com setters
-$product3->setId(3);
-$product3->setName("mamao");
-$product3->setPrice(15.00);
-$product3->show();
+$order2->setId(2);
+$order2->setCostumerName("lucas");
+$order2->setTotal(150.00);
+$order2->show();
 //aplicando desconto
-$product3->discount(5);
-$product3->show();
-//exibindo via echo
-echo "<p>Nome:".$product1->getName()." -Preço: R$". number_format($product1->getPrice(),2,',','.')."</p>";
-echo "<p>Nome:".$product2->getName()." -Preço: R$". number_format($product2->getPrice(),2,',','.')."</p>";
-echo "<p>Nome:".$product3->getName()." -Preço: R$". number_format($product3->getPrice(),2,',','.')."</p>";
+$order2->addFee(10);
+$order2->show();
+
