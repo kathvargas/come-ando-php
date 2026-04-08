@@ -2,20 +2,22 @@
 namespace Source\Models\Library;
 class Author{
    // Atributos
-   private ?int $id;
-   private ?string $name;
-   private ?string $nationality;
-   private ?string $birthYear;
+   private int $id;
+   private string $name;
+   private string $nationality;
+   private string $birthYear;
+   private string $biography;
    
-    public function __construct(?int $id=null,?string $name=null,?string $nationality=null,?string $birthYear=null)
+    public function __construct(int $id,string $name,string $nationality,string $birthYear, string $biography)
     {
         $this->id=$id;
         $this->name=$name;
         $this->nationality=$nationality;
         $this->birthYear=$birthYear;
+        $this->biography=$biography;
     }
     //
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
@@ -23,7 +25,7 @@ class Author{
         $this->id=$id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -31,7 +33,7 @@ class Author{
         $this->name=$name;
     }
 
-    public function getNationality(): ?string
+    public function getNationality(): string
     {
         return $this->nationality;
     }
@@ -39,7 +41,7 @@ class Author{
         $this->nationality=$nationality;
     }
 
-    public function getBirthYear(): ?string
+    public function getBirthYear(): string
     {
         return $this->birthYear;
     }
@@ -47,11 +49,20 @@ class Author{
         $this->birthYear=$birthYear;
     }
 
+public function getBiography(): string
+    {
+        return $this->biography;
+    }
+    public function setBiography(string $biography):void{
+        $this->biography=$biography;
+    }
+
     //
     public function show(): string{
-         return "Nome: {$this->getName()} 
+         return "ID #{$this->getId()}Nome: {$this->getName()} 
             Nationality: {$this->getNationality()} 
-            BirthYear:{$this->getBirthYear()}" ;
+            BirthYear:{$this->getBirthYear()}
+            Biography:{$this->getBiography()}" ;
     }
 }
 

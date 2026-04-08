@@ -2,80 +2,100 @@
 namespace Source\Models\Vehicles;
 class Vehicle{
    // Atributos
-   private ?string $chassisCode;
-   private ?string $brand;
-   private ?string $model;
-   private ?int $year;
-   private ?float $basePrice;
-   private ?Owner $owner;
+   private int $id;
+   private string $brand;
+   private string $model;
+    private int $year;
+   private string $fuelType;
+   private float $mileage;
+   private string $color;
    
-    public function __construct(?string $chassisCode=null,?string $brand=null,?string $model=null,?int $year=null,?float $basePrice=null,?Owner $owner=null)
+    public function __construct(int $id,string $brand,string $model,int $year, string $fuelType, float $mileage,string $color)
     {
-        $this->chassisCode=$chassisCode;
+        $this->id=$id;
         $this->brand=$brand;
         $this->model=$model;
         $this->year=$year;
-        $this->basePrice=$basePrice;
-        $this->owner=$owner;
+        $this->fuelType=$fuelType;
+        $this->year=$year;
+        $this->fuelType=$fuelType;
+        $this->mileage=0.0;
+        $this->color=$color;
     }
     //
-    public function getChassisCode(): ?string
+    public function getId(): int
     {
-        return $this->chassisCode;
+        return $this->id;
     }
-    public function setChassisCode(int $chassisCode):void{
-        $this->chassisCode=$chassisCode;
+    public function setId(int $id):void{
+        $this->id=$id;
     }
 
-    public function getBrand(): ?string
+    public function getBrand(): string
     {
         return $this->brand;
     }
     public function setBrand(string $brand):void{
         $this->brand=$brand;
     }
-
-    public function getModel(): ?string
+    public function getModel(): string
     {
         return $this->model;
     }
     public function setModel(string $model):void{
         $this->model=$model;
     }
-
-    public function getYear(): ?int
+    public function getYear(): int
     {
         return $this->year;
     }
     public function setYear(int $year):void{
         $this->year=$year;
     }
-    public function getBaseprice(): ?float
+    public function getFuelType(): string
     {
-        return $this->basePrice;
+        return $this->fuelType;
     }
-    public function setBaseprice(float $basePrice):void{
-        $this->basePrice=$basePrice;
+    public function setFuelType(string $fuelType):void{
+        $this->fuelType=$fuelType;
     }
-    public function getOwner(): ?Owner
+    public function getMileage(): float
     {
-        return $this->owner;
+        return $this->mileage;
     }
-    public function setOwner(Owner $owner):void{
-        $this->owner=$owner;
+    public function setMileage(float $mileage):void{
+        $this->mileage=$mileage;
+    }
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+    public function setColor(string $color):void{
+        $this->color=$color;
+    }
+    public function refuel(): string {
+        return "{$this->getBrand()} {$this->getModel()} está sendo abastecido com gasolina.";
+    }
+    public function drive(float $km): string {
+        $this->mileage+=$km;
+         $kmFormatado = number_format($km, 2, ',', '.');
+    $milhasFormatadas = number_format($this->mileage, 2, ',', '.');
+    
+    return "{$this->getBrand()} 
+    {$this->getModel()} percorreu {$kmFormatado} 
+    km. Quilometragem atual: {$milhasFormatadas} km.";
+
     }
 
 
     //
-    public  function calculateTax(): float{
-        return 0;
-    }
-
     public function show(): string{
-         return "Veiculo:{$this->getBrand()} -{$this->getModel()}-{$this->getYear()} 
-         Codigo de chassi: {$this->getChassiscode()} 
-         Valor base: {$this->getBaseprice()} 
-        Proprietario:{$this->getOwner()->getName()}" ;
+         return "ID #{$this->getId()}
+         Nome: {{$this->getBrand()} {$this->getModel()} 
+            Ano: {$this->getYear()} 
+            Cor:{$this->getColor()}
+            Combustivel:{$this->getFuelType()}
+            Quilometragem:{$this->getMileage()}" ;
     }
 }
 
